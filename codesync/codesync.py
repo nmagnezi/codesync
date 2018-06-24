@@ -62,10 +62,11 @@ def main():
     if args.direction == 'to':
         cmd = " ".join([rsync, constants.RSYNC_ARGS, local, remote])
     else:
-        cmd = [rsync, constants.RSYNC_ARGS, remote, local]
+        cmd = " ".join([rsync, constants.RSYNC_ARGS, remote, local])
 
     print "Executing: " + "".join(cmd)
     subprocess.call(cmd.split())
+
 
 if __name__ == '__main__':
     main()
