@@ -4,6 +4,9 @@ CodeSync
 CodeSync will Sync your git folders to or from a local directory and a 
 remote machine.
 
+## How To Install
+    pip install codesync
+
 ## Options
 
 ##### positional arguments:
