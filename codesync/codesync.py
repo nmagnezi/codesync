@@ -17,7 +17,7 @@
 
 import argparse
 from os import path
-import subprocess
+from subprocess import call
 
 import constants
 import helpers
@@ -25,32 +25,41 @@ import helpers
 
 def process_args():
     parser = argparse.ArgumentParser(
-        description='Sync git folders to or from a local directory and a'
-                    'remote machine')
+        description='Sync git folders to or from a local directory and a '
+                    'remote machine.'
+    )
     parser.add_argument(
         '-p', '--project',
         required=True,
-        help='Local git project, stored under your default path')
+        default=helpers.get_git_directory_path(),
+        help='The name of your local git project, stored under your default '
+             'path. Default: {}{}'
+             .format(helpers.get_git_directory_path(), '<project>')
+    )
     parser.add_argument(
         '-f', '--folder',
         required=False,
         default=constants.REMOTE_PATH,
-        help='Remote git folder')
+        help='Remote git folder. Default: {} '.format(constants.REMOTE_PATH)
+    )
     parser.add_argument(
         '-d', '--direction',
         required=True,
         choices=['to', 'from'],
-        help='Sync Direction')
+        help='Sync Direction'
+    )
     parser.add_argument(
         '-u', '--user',
         required=False,
         default=constants.SSH_USER,
-        help='Username for ssh connection')
+        help='Username for ssh connection. Default: {}'.format(
+            constants.SSH_USER)
+    )
     parser.add_argument(
         '-i', '--ip',
-        required=False,
-        default=constants.SSH_USER,
-        help='IP Address for ssh connection')
+        required=True,
+        help='IP Address for ssh connection'
+    )
     return parser.parse_args()
 
 
@@ -65,7 +74,7 @@ def main():
         cmd = " ".join([rsync, constants.RSYNC_ARGS, remote, local])
 
     print "Executing: " + "".join(cmd)
-    subprocess.call(cmd.split())
+    call(cmd.split())
 
 
 if __name__ == '__main__':
