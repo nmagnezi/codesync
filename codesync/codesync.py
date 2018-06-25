@@ -31,7 +31,6 @@ def process_args():
     parser.add_argument(
         '-p', '--project',
         required=True,
-        default=helpers.get_git_directory_path(),
         help='The name of your local git project, stored under your default '
              'path. Default: {}{}'
              .format(helpers.get_git_directory_path(), '<project>')
@@ -66,12 +65,18 @@ def process_args():
 def main():
     rsync = helpers.get_rsync_path()
     args = process_args()
-    local = path.join(helpers.get_git_directory_path(), args.project)
+    local = helpers.get_git_directory_path()
     remote = "".join([args.user, '@', args.ip, ':', args.folder])
     if args.direction == 'to':
-        cmd = " ".join([rsync, constants.RSYNC_ARGS, local, remote])
+        cmd = " ".join([rsync,
+                        constants.RSYNC_ARGS,
+                        path.join(local, args.project),
+                        remote])
     else:
-        cmd = " ".join([rsync, constants.RSYNC_ARGS, remote, local])
+        cmd = " ".join([rsync,
+                        constants.RSYNC_ARGS,
+                        "".join([remote, args.project]),
+                        local])
 
     print "Executing: " + "".join(cmd)
     call(cmd.split())
