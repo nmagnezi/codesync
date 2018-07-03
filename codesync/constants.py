@@ -19,6 +19,7 @@ REMOTE_PATH = "/opt/stack/"
 SSH_USER = "stack"
 RSYNC_BINARY = "rsync"
 
+# Excludes list composed with the kind help of John Schwarz: https://github.com/jschwarz89
 RSYNC_ARGS = ("-v -r --exclude=.tox --exclude=.idea --exclude=*.pyc "
               "--exclude=*.pyo --exclude=*~ --exclude=.*.swp --exclude=.*.swo "
               "-azh --progress --delete")
