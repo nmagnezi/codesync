@@ -30,7 +30,7 @@ remote machine.
 
     codesync -p octavia -d to -i 10.35.6.107 -f /my/path -u blah
 
-## How it works?
+## How does it work?
 
 These are steps performed by CodeSync:
 
