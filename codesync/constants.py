@@ -13,6 +13,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+CODESYNC_PROJECTS_DIR_ENV = 'CODESYNC_PROJECTS_DIR'
+
+EXIT_ERROR = 1
 GIT_DIR = "git/"
 REMOTE_PATH = "/opt/stack/"
 
