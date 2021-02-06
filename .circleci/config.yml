@@ -20,7 +20,7 @@ commands:
   lint:
     description: Run flake8 on files with git diff
     parameters:
-      working-directory: &working-directory
+      working-directory: /python-fsync
         default: .
         type: string
         description: Directory path for this job
