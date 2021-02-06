@@ -13,3 +13,8 @@ jobs:
             - run:
                 name: run flake8
                 command: flake8 .
+workflows:
+  main:
+    jobs:
+      - flake8_lint
+                
