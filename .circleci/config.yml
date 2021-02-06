@@ -1,0 +1,15 @@
+version: 2.1
+description: automatically lint python repos with flake8
+
+jobs:
+    flake8_lint:
+        docker:
+            - image: 889883130442.dkr.ecr.us-west-2.amazonaws.com/fair-images:python-3.7.1
+        steps:
+            - checkout
+            - run:
+                name: install flake8
+                command: pip install flake8==3.5.0
+            - run:
+                name: run flake8
+                command: flake8 .
